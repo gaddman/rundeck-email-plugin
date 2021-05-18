@@ -1,0 +1,79 @@
+name: Email Step
+rundeckPluginVersion: 1.2
+author: Chris Gadd
+date: 2021-04-13
+version: 0.4
+url: https://github.com/gaddman/rundeck-email-plugin
+providers:
+  - name: email-workflow-step
+    service: WorkflowStep
+    title: Email
+    description: Email text or files once for the workflow
+    plugin-type: script
+    script-file: email.sh
+    config:
+      - name: subject
+        title: Subject
+        type: String
+        required: true
+      - name: body
+        title: Body
+        description: Body of email.
+        type: String
+        required: false
+      - name: recipients
+        title: Recipients
+        description: Comma, semi-colon, or space-delimited recipient list.
+        type: String
+        required: true
+      - name: files
+        title: Files
+        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited).
+        type: String
+        required: false
+      - name: zip
+        title: Zip files
+        description: Zip files before attaching.
+        type: Boolean
+        default: false
+      - name: errorifmissing
+        title: Error if files are missing
+        description: If the files aren't found select this to trigger an error.
+        type: Boolean
+        default: false
+  - name: email-step
+    service: WorkflowNodeStep
+    title: Email
+    description: Email text or files for each node
+    plugin-type: script
+    script-file: email.sh
+    config:
+      - name: subject
+        title: Subject
+        type: String
+        required: true
+      - name: body
+        title: Body
+        description: Body of email.
+        type: String
+        required: false
+      - name: recipients
+        title: Recipients
+        description: Comma, semi-colon, or space-delimited recipient list.
+        type: String
+        required: true
+      - name: files
+        title: Files
+        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited).
+        type: String
+        required: false
+      - name: zip
+        title: Zip files
+        description: Zip files before attaching.
+        type: Boolean
+        default: false
+      - name: errorifmissing
+        title: Error if files are missing
+        description: If the files aren't found select this to trigger an error.
+        type: Boolean
+        default: false
