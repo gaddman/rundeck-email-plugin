@@ -2,7 +2,7 @@ name: Email Step
 rundeckPluginVersion: 1.2
 author: Chris Gadd
 date: 2021-04-13
-version: 0.4
+version: 1.0
 url: https://github.com/gaddman/rundeck-email-plugin
 providers:
   - name: email-workflow-step
@@ -10,7 +10,9 @@ providers:
     title: Email
     description: Email text or files once for the workflow
     plugin-type: script
-    script-file: email.sh
+    script-file: email-plugin.py
+    plugin-meta:
+      faicon: envelope
     config:
       - name: subject
         title: Subject
@@ -21,6 +23,18 @@ providers:
         description: Body of email.
         type: String
         required: false
+      - name: metadata
+        title: Include metadata
+        description: Include Rundeck execution metadata such as username and ID.
+        type: Boolean
+        required: false
+      - name: format
+        title: Format
+        description: Formatting of message body.
+        type: Select
+        values: HTML, Monospace, Plaintext
+        default: Plaintext
+        required: true
       - name: recipients
         title: Recipients
         description: Comma, semi-colon, or space-delimited recipient list.
@@ -28,7 +42,7 @@ providers:
         required: true
       - name: files
         title: Files
-        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited).
+        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited). Standard Unix wildcards (globs) are supported, regular expressions are not.
         type: String
         required: false
       - name: zip
@@ -46,7 +60,9 @@ providers:
     title: Email
     description: Email text or files for each node
     plugin-type: script
-    script-file: email.sh
+    script-file: email-plugin.py
+    plugin-meta:
+      faicon: envelope
     config:
       - name: subject
         title: Subject
@@ -56,7 +72,21 @@ providers:
         title: Body
         description: Body of email.
         type: String
+        renderingOptions:
+          displayType: MULTI_LINE
         required: false
+      - name: metadata
+        title: Include metadata
+        description: Include Rundeck execution metadata such as username and ID.
+        type: Boolean
+        required: false
+      - name: format
+        title: Format
+        description: Formatting of message body.
+        type: Select
+        values: HTML, Monospace, Plaintext
+        default: Plaintext
+        required: true
       - name: recipients
         title: Recipients
         description: Comma, semi-colon, or space-delimited recipient list.
@@ -64,7 +94,7 @@ providers:
         required: true
       - name: files
         title: Files
-        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited).
+        description: File(s) to attach to email. May be a path or a list of files (comma, semi-colon, or space-delimited). Standard Unix wildcards (globs) are supported, regular expressions are not.
         type: String
         required: false
       - name: zip
