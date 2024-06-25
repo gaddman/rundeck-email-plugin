@@ -28,6 +28,7 @@ recipients = os.environ["RD_CONFIG_RECIPIENTS"]
 files = os.environ.get("RD_CONFIG_FILES")
 zip = os.environ.get("RD_CONFIG_ZIP") == "true"
 errorifmissing = os.environ.get("RD_CONFIG_ERRORIFMISSING") == "true"
+smtp_server = os.environ["RD_CONFIG_SMTP_SERVER"]
 serverUrl = os.environ["RD_JOB_SERVERURL"]
 user = os.environ["RD_JOB_USERNAME"]
 jobName = os.environ["RD_JOB_NAME"]
@@ -37,7 +38,6 @@ jobUrl = os.environ["RD_JOB_URL"]
 execId = os.environ["RD_JOB_EXECID"]
 verbose = os.environ["RD_JOB_LOGLEVEL"] == "DEBUG"
 
-smtp_server = "SMTP_SERVER_ADDRESS"
 # Sender email address is already in a config file but not AFAIK available to plugins as an environment variable.
 configFile = "/etc/rundeck/rundeck-config.properties"
 pattern = r"grails\.mail\.default\.from\s*=\s*(.*)"

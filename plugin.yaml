@@ -2,7 +2,7 @@ name: Email Step
 rundeckPluginVersion: 1.2
 author: Chris Gadd
 date: 2021-04-13
-version: 1.1
+version: 1.2
 url: https://github.com/gaddman/rundeck-email-plugin
 providers:
   - name: email-workflow-step
@@ -57,6 +57,11 @@ providers:
         description: If the files aren't found select this to trigger an error.
         type: Boolean
         default: false
+      - name: smtp_server
+        title: SMTP server
+        type: String
+        required: true
+        scope: Framework
   - name: email-step
     service: WorkflowNodeStep
     title: Email
@@ -109,3 +114,8 @@ providers:
         description: If the files aren't found select this to trigger an error.
         type: Boolean
         default: false
+      - name: smtp_server
+        title: SMTP server
+        type: String
+        required: true
+        scope: Framework
